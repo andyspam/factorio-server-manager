@@ -19,6 +19,7 @@ type Flags struct {
 	ConfFile           string `long:"conf" default:"./conf.json" description:"Specify location of Factorio Server Manager config file." env:"FSM_CONF"`
 	FactorioDir        string `long:"dir" default:"./" description:"Specify location of Factorio directory." env:"FSM_DIR"`
 	ServerIP           string `long:"host" default:"0.0.0.0" description:"Specify IP for webserver to listen on." env:"FSM_SERVER_IP"`
+	ServerHostName     string `long:"hostname" default:"0.0.0.0" description:"Specify domain for webserver to listen on." env:"FSM_SERVER_HOSTNAME"`
 	FactorioIP         string `long:"game-bind-address" default:"0.0.0.0" description:"Specify IP for Factorio game server to listen on." env:"FSM_FACTORIO_IP"`
 	FactorioPort       string `long:"port" default:"80" description:"Specify a port for the server." env:"FSM_PORT"`
 	FactorioConfigFile string `long:"config" default:"config/config.ini" description:"Specify location of Factorio config.ini file." env:"FSM_FACTORIO_CONFIG_FILE"`
@@ -49,6 +50,7 @@ type Config struct {
 	FactorioAdminFile       string `json:"factorio_admin_file,omitempty"`
 	ServerIP                string `json:"server_ip,omitempty"`
 	ServerPort              string `json:"server_port,omitempty"`
+	ServerHostName          string `json:"server_hostname,omitempty"`
 	MaxUploadSize           int64  `json:"max_upload_size,omitempty"`
 	DatabaseFile            string `json:"database_file,omitempty"`
 	SQLiteDatabaseFile      string `json:"sq_lite_database_file,omitempty"`
@@ -212,6 +214,7 @@ func (config *Config) mapFlags(flags Flags) {
 	config.ConfFile = flags.ConfFile
 	config.FactorioDir = flags.FactorioDir
 	config.ServerIP = flags.ServerIP
+	config.ServerHostName = flags.ServerHostName
 	config.ServerPort = flags.FactorioPort
 	config.FactorioIP = flags.FactorioIP
 	config.FactorioSavesDir = filepath.Join(flags.FactorioDir, "saves")

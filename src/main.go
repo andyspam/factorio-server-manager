@@ -29,6 +29,9 @@ func main() {
 
 	// Initialize HTTP router -- also initializes websocket
 	router := api.NewRouter()
+	router.Host(config.ServerIP)
+	router.Host(config.ServerHostName)
+
 
 	log.Printf("Starting server on: %s:%s", config.ServerIP, config.ServerPort)
 	log.Fatal(http.ListenAndServe(config.ServerIP+":"+config.ServerPort, router))
